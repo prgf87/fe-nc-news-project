@@ -7,17 +7,17 @@ export default function ArticlePage() {
   const [article, setArticle] = useState({});
   const { article_id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setError(false);
     setIsLoading(true);
     getArticleById(article_id)
       .then((article) => {
+        setIsLoading(false);
         setArticle(article);
       })
       .catch((err) => {
-        // console.log(err);
         setIsLoading(false);
         setError(err);
       });
@@ -25,6 +25,10 @@ export default function ArticlePage() {
 
   if (error) {
     return <ErrorPage error={error} />;
+  }
+
+  if (isLoading) {
+    return <p>Loading...</p>;
   }
 
   return (

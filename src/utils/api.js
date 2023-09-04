@@ -10,6 +10,6 @@ export const getArticles = async () => {
 
 export const getArticleById = async (id) => {
   const res = await axios.get(`${baseURL}/articles/${id}`);
-  const results = res.data.article;
-  return results;
+  const article = res.data.article;
+  return article;
 };
