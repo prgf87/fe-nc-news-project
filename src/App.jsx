@@ -1,7 +1,19 @@
+import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
+import { Route, Routes } from "react-router-dom";
+import ArticleList from "./components/modules/articles/ArticleList";
+import ErrorPage from "./components/modules/ErrorPage";
+
 function App() {
   return (
     <>
-      <h1>Hello World!</h1>
+      <Header />
+      <Routes>
+        <Route path="/" element={<ArticleList />} />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+
+      <Footer />
     </>
   );
 }
