@@ -1,7 +1,20 @@
+import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
+import { Route, Routes } from "react-router-dom";
+import ArticleList from "./components/modules/ArticleList";
+
 function App() {
   return (
     <>
-      <h1>Hello World!</h1>
+      <header>
+        <Header />
+      </header>
+      <body>
+        <ArticleList />
+      </body>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }
