@@ -1,9 +1,15 @@
 import axios from "axios";
 
-const baseURL = "http://nc-news-api-hjp3.onrender.com/api";
+const baseURL = "https://nc-news-api-hjp3.onrender.com/api";
 
 export const getArticles = async () => {
   const res = await axios.get(`${baseURL}/articles`);
   const results = res.data;
   return results;
+};
+
+export const getArticleById = async (id) => {
+  const res = await axios.get(`${baseURL}/articles/${id}`);
+  const article = res.data.article;
+  return article;
 };
