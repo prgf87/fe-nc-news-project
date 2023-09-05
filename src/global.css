@@ -21,6 +21,34 @@
   @apply text-zinc-500 hover:text-zinc-800;
 }
 
-.article__container {
-  @apply p-8 border-4 m-4;
+.article--container {
+  @apply grid grid-cols-2 mx-auto  p-8 m-8;
+}
+
+.article--single {
+  @apply p-8 m-8 shadow-2xl opacity-75 hover:opacity-100 max-h-[45rem] overflow-y-auto;
+}
+
+h1 {
+  @apply text-5xl;
+}
+
+h2 {
+  @apply text-4xl;
+}
+
+h3 {
+  @apply text-3xl;
+}
+
+h4 {
+  @apply text-2xl;
+}
+
+h5 {
+  @apply text-xl;
+}
+
+p {
+  @apply text-base;
 }
