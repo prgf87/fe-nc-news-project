@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getArticles } from "../../../utils/api";
+import { getArticles } from "../../utils/api";
 import SingleArticle from "./SingleArticle";
 
 export default function ArticleList() {
@@ -11,9 +11,10 @@ export default function ArticleList() {
     setIsError(false);
     setIsLoading(true);
     getArticles()
-      .then((data) => {
+      .then(({ articles }) => {
         setIsLoading(false);
-        setArticleList(data.articles);
+
+        setArticleList(articles);
       })
       .catch((err) => {
         console.log(err);
