@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 export default function Header() {
   const { users } = useContext(UserContext);
   return (
-    <header className="sticky max-w-5xl mx-auto mt-2 border-b-2 shadow-sm">
-      <main className="flex justify-between items-center">
+    <header className="sticky max-w-[100vw] mx-auto mt-2 border-b-2 shadow-sm">
+      <main className="flex justify-between items-center max-w-5xl mx-auto">
         <Link to={"/"}>
           <img
             src="/logo.png"

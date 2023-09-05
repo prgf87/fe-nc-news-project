@@ -12,7 +12,7 @@ export default function Navbar() {
         </li>
         <li>
           <button className="btn2">
-            <Link to={"/topics"}>Users</Link>
+            <Link to={"/users"}>Users</Link>
           </button>
         </li>
         <li>
