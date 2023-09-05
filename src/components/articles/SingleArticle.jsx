@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { getArticleComments, patchArticleVotes } from "../../utils/api";
+// import { getArticleComments, patchArticleVotes } from "../../utils/api";
 
 export default function SingleArticle({ article }) {
   const {
@@ -15,24 +15,28 @@ export default function SingleArticle({ article }) {
     article_id,
   } = article;
 
-  const vote = { inc_votes: 1 };
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(true);
 
-  useEffect(() => {
-    getArticleComments(article_id)
-      .then((comments) => {
-        setLoading(false);
-        setCommentList(comments);
-      })
-      .catch((err) => {
-        setLoading(false);
-        setError(err);
-      });
-    patchArticleVotes(vote, article_id);
-  }, [votes]);
+  // const vote = { inc_votes: 1 };
 
-  const handlePatch = (e) => {
-    console.log(e);
-  };
+  // useEffect(() => {
+  //   getArticleComments(article_id)
+  //     .then((comments) => {
+  //       setLoading(false);
+  //       setCommentList(comments);
+  //     })
+  //     .catch((err) => {
+  //       setLoading(false);
+  //       setError(err);
+  //     });
+  // }, [votes]);
+
+  // const handlePatch = (e) => {
+  //   console.log(e);
+  //   return;
+  //   patchArticleVotes(vote, article_id);
+  // };
 
   return (
     <li className="article--single">
@@ -45,12 +49,6 @@ export default function SingleArticle({ article }) {
         <p>{body}</p>
         <p>{comment_count}</p>
         <p>{votes}</p>
-        <button onClick={handlePatch} className="button--like">
-          Like
-        </button>
-        <button onClick={handlePatch} className="button--dislike">
-          Dislike
-        </button>
       </Link>
     </li>
   );

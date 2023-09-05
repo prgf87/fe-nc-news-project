@@ -9,12 +9,24 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+button {
+  @apply text-lg;
+}
+
 .btn {
   @apply text-sm px-8 py-1 bg-zinc-300 border-2 border-black/50 text-zinc-700 hover:bg-zinc-200 hover:text-zinc-800 active:bg-zinc-400 active:text-zinc-900 active:border-zinc-500 duration-75;
 }
 
 .btn2 {
   @apply text-sm px-8 py-1 text-zinc-600 hover:text-zinc-800  active:text-zinc-900  duration-75;
+}
+
+.button--like {
+  @apply w-[7.5rem] px-8 py-2 bg-slate-600 rounded-2xl border-gray-300 border-2 hover:bg-slate-400 hover:border-gray-800 text-white;
+}
+
+.button--dislike {
+  @apply w-[7.5rem] px-8 py-2 bg-stone-800 rounded-2xl border-gray-300 border-2 hover:bg-stone-400 hover:border-gray-800 text-white;
 }
 
 .link {
@@ -30,23 +42,23 @@
 }
 
 h1 {
-  @apply text-5xl;
+  @apply text-5xl my-2;
 }
 
 h2 {
-  @apply text-4xl;
+  @apply text-4xl my-1;
 }
 
 h3 {
-  @apply text-3xl;
+  @apply text-3xl my-1;
 }
 
 h4 {
-  @apply text-2xl;
+  @apply text-2xl my-1;
 }
 
 h5 {
-  @apply text-xl;
+  @apply text-xl my-1;
 }
 
 p {
