@@ -2,15 +2,19 @@ import React from "react";
 
 export default function CommentCard({ comment }) {
   return (
-    <div>
-      <h2>{comment.title}</h2>
-      <h3>{comment.author}</h3>
-      <h3>{comment.topic}</h3>
+    <div className="comment--card">
+      <h3>{comment.title}</h3>
+      <h4>{comment.author}</h4>
+      <h4>{comment.topic}</h4>
       <Date>{comment.created_at}</Date>
       <p>{comment.body}</p>
       <p>{comment.votes}</p>
       <p></p>
-      <img src={comment.article_img_url} alt={comment.title} className="h-20" />
+      <img
+        src={comment.article_img_url}
+        alt={comment.title}
+        className="w-full"
+      />
     </div>
   );
 }

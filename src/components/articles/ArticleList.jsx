@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { getArticles } from "../../utils/api";
 import SingleArticle from "./SingleArticle";
+import LoadingSpinner from "../modules/LoadingSpinner";
+import ErrorPage from "../modules/ErrorPage";
 
 export default function ArticleList() {
   const [articleList, setArticleList] = useState([]);
-
   const [commentList, setCommentList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -23,6 +24,14 @@ export default function ArticleList() {
         setError(true);
       });
   }, []);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return <ErrorPage />;
+  }
 
   return (
     <>

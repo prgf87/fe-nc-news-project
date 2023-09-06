@@ -34,11 +34,19 @@ button {
 }
 
 .article--container {
-  @apply grid grid-cols-2 mx-auto  p-8 m-8;
+  @apply grid grid-cols-1 md:grid-cols-2 mx-auto  p-8 m-8;
 }
 
 .article--single {
   @apply p-8 m-8 shadow-2xl opacity-75 hover:opacity-100 max-h-[45rem] overflow-y-auto;
+}
+
+.comment--container {
+  @apply grid grid-cols-1 md:grid-cols-2 mx-auto;
+}
+
+.comment--card {
+  @apply p-2 m-2 bg-gray-300/30 border-black border shadow-2xl max-h-[1000px] overflow-y-auto;
 }
 
 h1 {
