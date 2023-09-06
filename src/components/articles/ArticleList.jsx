@@ -4,38 +4,46 @@ import SingleArticle from "./SingleArticle";
 
 export default function ArticleList() {
   const [articleList, setArticleList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+
+  const [commentList, setCommentList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    setIsError(false);
-    setIsLoading(true);
+    setError(false);
+    setLoading(true);
     getArticles()
       .then(({ articles }) => {
-        setIsLoading(false);
-
+        setLoading(false);
         setArticleList(articles);
       })
       .catch((err) => {
         console.log(err);
-        setIsLoading(false);
-        setIsError(true);
+        setLoading(false);
+        setError(true);
       });
   }, []);
 
   return (
-    <main>
-      <ul className="grid grid-cols-2">
+    <>
+      <ul className="article--container">
         {articleList.map((article) => {
-          if (isLoading) {
+          if (loading) {
             return <p key={article.id}>Loading....</p>;
           }
-          if (isError) {
+          if (error) {
             return <p key={article.id}>Whoops, we couldn't find that..!</p>;
           }
-          return <SingleArticle article={article} key={article.article_id} />;
+          return (
+            <SingleArticle
+              article={article}
+              key={article.article_id}
+              comments={commentList}
+              setCommentList={setCommentList}
+            />
+          );
         })}
       </ul>
-    </main>
+    </>
   );
 }

@@ -23,7 +23,7 @@ export default function Header() {
               alt="Avatar for the currently signed-in user account"
               className="h-10 rounded-full"
             />
-            <h2 className="mr-8 ml-2">{users[0].username}</h2>
+            <p className="mr-8 ml-2">{users[0].username}</p>
           </aside>
           <Link
             to={"/users"}

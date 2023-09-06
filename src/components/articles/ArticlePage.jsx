@@ -1,71 +1,109 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getArticleById, getArticleComments } from "../../utils/api";
+
+import {
+  getArticleById,
+  getArticleComments,
+  addArticleVotes,
+} from "../../utils/api";
 import ErrorPage from "../modules/ErrorPage";
 import CommentCard from "./CommentCard";
+import IncreaseVoteCount from "../buttons/IncreaseVoteCount";
+import DecreaseVoteCount from "../buttons/DecreaseVoteCount";
 
 export default function ArticlePage() {
-  const [article, setArticle] = useState({});
   const { article_id } = useParams();
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [commentList, setCommentList] = useState([]);
+  const [article, setArticle] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [articleCommentList, setArticleCommentList] = useState([]);
+  const {
+    title,
+    author,
+    created_at,
+    article_img_url,
+    topic,
+    body,
+    comment_count,
+    votes,
+  } = article;
+  const [currVotes, setCurrVotes] = useState(votes);
 
   useEffect(() => {
     setError(false);
-    setIsLoading(true);
     getArticleById(article_id)
       .then((article) => {
-        setIsLoading(false);
+        setLoading(false);
         setArticle(article);
+        setCurrVotes(article.votes);
       })
       .catch((err) => {
-        setIsLoading(false);
+        setLoading(false);
         setError(err);
       });
     getArticleComments(article_id)
       .then((comments) => {
-        setIsLoading(false);
-        setCommentList(comments);
+        setLoading(false);
+        setArticleCommentList(comments);
       })
       .catch((err) => {
-        setIsLoading(false);
+        setLoading(false);
         setError(err);
       });
-  }, []);
+  }, [article_id, votes]);
 
   if (error) {
     return <ErrorPage error={error} />;
   }
 
-  if (isLoading) {
+  if (loading) {
     return <p>Loading...</p>;
   }
 
   return (
     <article className="border-8 m-[2em] p-[2em]">
-      <content className="text-left">
-        <h1>{article.title}</h1>
-        <h2>Written by: {article.author}</h2>
-        <p>Published: {article.created_at}</p>
-        <h3>Topic: {article.topic}</h3>
-        <img
-          src={article.article_img_url}
-          alt={article.title}
-          className="w-full"
-        />
-        <p>{article.body}</p>
-        <p>{article.comment_count}</p>
-        <p>{article.votes}</p>
-      </content>
-      <div className="my-8 border-4 shadow-lg">
-        <h1 className="text-center">Comments</h1>
+      <div className="text-left">
+        <h1>{title}</h1>
+        <h2>Written by: {author}</h2>
+        <p>Published: {created_at}</p>
+        <h3>Topic: {topic}</h3>
+        <img src={article_img_url} alt={title} className="w-full" />
+        <p className="mx-28 my-8">{body}</p>
+        <p>{comment_count}</p>
+        <div className="flex justify-center items-center">
+          <p className="border-2 rounded-full px-4 py-2 bg-green-500/50">
+            {currVotes}
+          </p>
+        </div>
+        <span className="flex justify-evenly">
+          <IncreaseVoteCount
+            currVotes={currVotes}
+            article_id={article_id}
+            setCurrVotes={setCurrVotes}
+          />
+          <DecreaseVoteCount
+            currVotes={currVotes}
+            article_id={article_id}
+            setCurrVotes={setCurrVotes}
+          />
+        </span>
       </div>
-      <section className="grid grid-cols-2">
-        {commentList.map((comment) => {
-          return <CommentCard key={comment.comment_id} comment={comment} />;
-        })}
-      </section>
+      <div className="my-8 p-8 border-4 shadow-lg">
+        <h1 className="text-center my-8 underline ">Comments</h1>
+        <section className="grid grid-cols-2">
+          {articleCommentList.map((comment) => {
+            if (articleCommentList.length === 0) {
+              return (
+                <p>
+                  This article doesn't have any comments yet, fancy leaving one?{" "}
+                  <button>Add Comment</button>
+                </p>
+              );
+            }
+            return <CommentCard key={comment.comment_id} comment={comment} />;
+          })}
+        </section>
+      </div>
     </article>
   );
 }
