@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { getArticleComments, patchArticleVotes } from "../../utils/api";
 
 export default function SingleArticle({ article }) {
   const {
@@ -14,29 +13,6 @@ export default function SingleArticle({ article }) {
     votes,
     article_id,
   } = article;
-
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(true);
-
-  // const vote = { inc_votes: 1 };
-
-  // useEffect(() => {
-  //   getArticleComments(article_id)
-  //     .then((comments) => {
-  //       setLoading(false);
-  //       setCommentList(comments);
-  //     })
-  //     .catch((err) => {
-  //       setLoading(false);
-  //       setError(err);
-  //     });
-  // }, [votes]);
-
-  // const handlePatch = (e) => {
-  //   console.log(e);
-  //   return;
-  //   patchArticleVotes(vote, article_id);
-  // };
 
   return (
     <li className="article--single">

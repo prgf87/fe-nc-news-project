@@ -4,6 +4,7 @@ import SingleArticle from "./SingleArticle";
 
 export default function ArticleList() {
   const [articleList, setArticleList] = useState([]);
+
   const [commentList, setCommentList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -14,7 +15,6 @@ export default function ArticleList() {
     getArticles()
       .then(({ articles }) => {
         setLoading(false);
-
         setArticleList(articles);
       })
       .catch((err) => {

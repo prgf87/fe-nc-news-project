@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
 import {
   getArticleById,
   getArticleComments,
@@ -50,14 +51,6 @@ export default function ArticlePage() {
         setError(err);
       });
   }, [article_id, votes]);
-
-  // const clickAddHandler = (e, votes, id) => {
-  //   e.preventDefault();
-  //   // console.log(currVotes, id);
-  //   // console.log(votes, e, article_id);
-  //   addArticleVotes(votes, article_id);
-  //   setCurrVotes(votes + 1);
-  // };
 
   if (error) {
     return <ErrorPage error={error} />;
