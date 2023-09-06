@@ -7,24 +7,49 @@ const db = axios.create({
 });
 
 export const getArticles = async () => {
-  const res = await db.get(`${baseURL}/articles`);
+  const res = await db.get(`${baseURL}/articles`).catch((err) => {
+    console.log(err);
+  });
   const results = res.data;
   return results;
 };
 
 export const getArticleById = async (id) => {
-  const res = await db.get(`${baseURL}/articles/${id}`);
+  const res = await db.get(`${baseURL}/articles/${id}`).catch((err) => {
+    console.log(err);
+  });
   const article = res.data.article;
   return article;
 };
 
 export const getArticleComments = async (id) => {
-  const res = await db.get(`${baseURL}/articles/${id}/comments`);
+  const res = await db
+    .get(`${baseURL}/articles/${id}/comments`)
+    .catch((err) => {
+      console.log(err);
+    });
   const comments = res.data.comments;
   return comments;
 };
 
-export const patchArticleVotes = async (id, vote) => {
-  const res = await db.patch(vote, `${baseURL}/articles/${id}`);
-  console.log(res.data);
+export const addArticleVotes = async (votes, id) => {
+  const res = await db
+    .patch(`${baseURL}/articles/${id}`, {
+      inc_votes: votes + 1,
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  return res.data.article.votes;
+};
+
+export const removeArticleVotes = async (votes, id) => {
+  const res = await db
+    .patch(`${baseURL}/articles/${id}`, {
+      inc_votes: votes - 1,
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  return res.data.article.votes;
 };

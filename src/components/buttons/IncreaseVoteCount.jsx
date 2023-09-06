@@ -1,18 +1,21 @@
 import React from "react";
-import { patchArticleVotes } from "../../utils/api";
+import { addArticleVotes } from "../../utils/api";
 
-export default function IncreaseVoteCount({ votes, article_id }) {
-  // console.log(votes);
-  // console.log(article_id);
-  const clickHandler = (e, votes, article_id) => {
-    // patchArticleVotes(votes);
-    console.log(votes, e, article_id);
+export default function IncreaseVoteCount({
+  currVotes,
+  article_id,
+  setCurrVotes,
+}) {
+  const clickAddHandler = (e, votes, id) => {
+    e.preventDefault();
+    setCurrVotes(votes + 1);
+    addArticleVotes(votes, id);
   };
   return (
     <button
       className="button--like"
       onClick={(e) => {
-        clickHandler(e, votes, article_id);
+        clickAddHandler(e, currVotes, article_id);
       }}
     >
       Like

@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getArticleById, getArticleComments } from "../../utils/api";
+import {
+  getArticleById,
+  getArticleComments,
+  addArticleVotes,
+} from "../../utils/api";
 import ErrorPage from "../modules/ErrorPage";
 import CommentCard from "./CommentCard";
 import IncreaseVoteCount from "../buttons/IncreaseVoteCount";
@@ -10,9 +14,8 @@ export default function ArticlePage() {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
   const [articleCommentList, setArticleCommentList] = useState([]);
-
   const {
     title,
     author,
@@ -23,6 +26,7 @@ export default function ArticlePage() {
     comment_count,
     votes,
   } = article;
+  const [currVotes, setCurrVotes] = useState(votes);
 
   useEffect(() => {
     setError(false);
@@ -30,6 +34,7 @@ export default function ArticlePage() {
       .then((article) => {
         setLoading(false);
         setArticle(article);
+        setCurrVotes(article.votes);
       })
       .catch((err) => {
         setLoading(false);
@@ -45,6 +50,14 @@ export default function ArticlePage() {
         setError(err);
       });
   }, [article_id, votes]);
+
+  // const clickAddHandler = (e, votes, id) => {
+  //   e.preventDefault();
+  //   // console.log(currVotes, id);
+  //   // console.log(votes, e, article_id);
+  //   addArticleVotes(votes, article_id);
+  //   setCurrVotes(votes + 1);
+  // };
 
   if (error) {
     return <ErrorPage error={error} />;
@@ -64,10 +77,22 @@ export default function ArticlePage() {
         <img src={article_img_url} alt={title} className="w-full" />
         <p className="mx-28 my-8">{body}</p>
         <p>{comment_count}</p>
-        <p>{votes}</p>
+        <div className="flex justify-center items-center">
+          <p className="border-2 rounded-full px-4 py-2 bg-green-500/50">
+            {currVotes}
+          </p>
+        </div>
         <span className="flex justify-evenly">
-          <IncreaseVoteCount votes={votes} article_id={article_id} />
-          <DecreaseVoteCount votes={votes} article_id={article_id} />
+          <IncreaseVoteCount
+            currVotes={currVotes}
+            article_id={article_id}
+            setCurrVotes={setCurrVotes}
+          />
+          <DecreaseVoteCount
+            currVotes={currVotes}
+            article_id={article_id}
+            setCurrVotes={setCurrVotes}
+          />
         </span>
       </div>
       <div className="my-8 p-8 border-4 shadow-lg">
