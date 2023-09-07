@@ -11,7 +11,11 @@ function App() {
         <Routes>
           <Route path="/" element={<ArticleList />} />
           <Route path="/articles/:article_id" element={<ArticlePage />} />
-          <Route path="*" element={<ErrorPage />} />
+          <Route path="?topic=value" element={<ArticlePage />} />
+          <Route
+            path="*"
+            element={<ErrorPage props={{ error: { code: 404 } }} />}
+          />
         </Routes>
       </Layout>
     </>

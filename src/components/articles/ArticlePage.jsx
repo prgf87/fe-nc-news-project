@@ -113,3 +113,5 @@ export default function ArticlePage() {
     </article>
   );
 }
+
+//add disable when user clicks like - use cookies

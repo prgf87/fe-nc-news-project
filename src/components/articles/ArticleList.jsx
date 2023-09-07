@@ -3,17 +3,22 @@ import { getArticles } from "../../utils/api";
 import SingleArticle from "./SingleArticle";
 import LoadingSpinner from "../modules/LoadingSpinner";
 import ErrorPage from "../modules/ErrorPage";
+import { useSearchParams } from "react-router-dom";
+import TopicList from "../topics/TopicList";
 
 export default function ArticleList() {
   const [articleList, setArticleList] = useState([]);
   const [commentList, setCommentList] = useState([]);
+  const [topicList, setTopicList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const topic = searchParams.get("topic") || null;
 
   useEffect(() => {
     setError(false);
     setLoading(true);
-    getArticles()
+    getArticles(topic)
       .then(({ articles }) => {
         setLoading(false);
         setArticleList(articles);
@@ -23,7 +28,7 @@ export default function ArticleList() {
         setLoading(false);
         setError(true);
       });
-  }, []);
+  }, [topic]);
 
   if (loading) {
     return <LoadingSpinner />;
@@ -35,6 +40,7 @@ export default function ArticleList() {
 
   return (
     <>
+      <TopicList />
       <ul className="article--container">
         {articleList.map((article) => {
           if (loading) {
