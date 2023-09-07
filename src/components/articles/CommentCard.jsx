@@ -6,7 +6,7 @@ export default function CommentCard({ comment }) {
       <h3>{comment.title}</h3>
       <h4>{comment.author}</h4>
       <h4>{comment.topic}</h4>
-      <Date>{comment.created_at}</Date>
+      <p>{comment.created_at}</p>
       <p>{comment.body}</p>
       <p>{comment.votes}</p>
       <p></p>

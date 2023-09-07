@@ -50,7 +50,7 @@ export default function ArticlePage() {
         setLoading(false);
         setError(err);
       });
-  }, [article_id, votes]);
+  }, [article_id, votes, articleCommentList, comment_count]);
 
   if (error) {
     return <ErrorPage error={error} />;
@@ -69,7 +69,7 @@ export default function ArticlePage() {
         <h3>Topic: {topic}</h3>
         <img src={article_img_url} alt={title} className="w-full" />
         <p className="md:mx-28 my-8">{body}</p>
-        <p>{comment_count}</p>
+
         <div className="flex justify-center items-center">
           <p className="border-2 rounded-full px-4 py-2 bg-green-500/50">
             {currVotes}
@@ -90,7 +90,12 @@ export default function ArticlePage() {
       </div>
       <div className="my-8 p-8 border-4 shadow-lg">
         <h1 className="text-center mb-8 underline ">Comments</h1>
-        <CommentAdder />
+        <CommentAdder
+          article_id={article_id}
+          articleCommentList={articleCommentList}
+          setArticleCommentList={setArticleCommentList}
+        />
+        <p className="p-2">Comments: {comment_count}</p>
         <section className="comment--container">
           {articleCommentList.map((comment) => {
             if (articleCommentList.length === 0) {

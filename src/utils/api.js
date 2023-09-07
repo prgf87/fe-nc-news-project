@@ -53,3 +53,14 @@ export const removeArticleVotes = async (votes, id) => {
     });
   return res.data.article.votes;
 };
+
+export const addNewComment = async (comment, id) => {
+  console.log(comment);
+  const res = await db
+    .post(`${baseURL}/articles/${id}/comments`, comment)
+    .catch((err) => {
+      console.log(err);
+    });
+  console.log(res);
+  return res;
+};
