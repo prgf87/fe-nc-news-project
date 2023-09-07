@@ -26,17 +26,17 @@ export default function TopicList() {
   if (error) return <ErrorPage error={error} />;
 
   return (
-    <>
-      <h3 className="text-center mt-4">Topics</h3>
+    <div className="border-b-2 shadow-lg">
+      <h4 className="text-center my-4">Topics</h4>
       <ul className="flex justify-center text-lg gap-x-8 uppercase">
         {topicList.map((topic) => {
           return (
-            <li key={topic.slug}>
+            <li key={topic.slug} className="link">
               <Link to={`?topic=${topic.slug}`}>{topic.slug}</Link>
             </li>
           );
         })}
       </ul>
-    </>
+    </div>
   );
 }
