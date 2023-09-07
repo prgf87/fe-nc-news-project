@@ -1,15 +1,19 @@
 import axios from "axios";
 
-const baseURL = "https://nc-news-api-hjp3.onrender.com/api";
+const baseURL = "http://localhost:9090/api";
+// const baseURL = "https://nc-news-api-hjp3.onrender.com/api";
 
 const db = axios.create({
   baseURL: baseURL,
 });
 
-export const getArticles = async () => {
-  const res = await db.get(`${baseURL}/articles`).catch((err) => {
-    console.log(err);
-  });
+export const getArticles = async (topic) => {
+  console.log(topic);
+  const res = await db
+    .get(`${baseURL}/articles` + (topic ? `?topic=${topic}` : ""))
+    .catch((err) => {
+      console.log(err);
+    });
   const results = res.data;
   return results;
 };
@@ -63,4 +67,12 @@ export const addNewComment = async (comment, id) => {
     });
   console.log(res);
   return res;
+};
+
+export const getTopics = async () => {
+  const res = await db.get(`${baseURL}/topics`).catch((err) => {
+    console.log(err);
+  });
+  const results = res.data;
+  return results;
 };

@@ -4,7 +4,7 @@ import { UserContext } from "../../context/UserContext";
 import { Link } from "react-router-dom";
 
 export default function Header() {
-  const { users } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   return (
     <header className="sticky max-w-[100vw] mx-auto mt-2 border-b-2 shadow-sm">
       <main className="flex justify-between items-center max-w-5xl mx-auto">
@@ -16,14 +16,14 @@ export default function Header() {
           />
         </Link>
         <section>
-          <Link to={`/users/${users[0].username}`}>
+          <Link to={`/users/${user.username}`}>
             <aside className="flex items-center">
               <img
-                src={users[0].avatar_url}
+                src={user.avatar_url}
                 alt="Avatar for the currently signed-in user account"
                 className="h-10 rounded-full"
               />
-              <p className="mr-8 ml-2">{users[0].username}</p>
+              <p className="mr-8 ml-2">{user.username}</p>
             </aside>
           </Link>
           <div className="absolute">

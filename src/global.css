@@ -42,7 +42,7 @@ button {
 }
 
 .comment--container {
-  @apply grid grid-cols-1 md:grid-cols-2 mx-auto;
+  @apply grid grid-cols-1 mx-auto;
 }
 
 .comment--card {

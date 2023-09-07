@@ -6,7 +6,7 @@ export default function Layout({ title, children }) {
   return (
     <div className="w-[100vw] min-h-[100vh]">
       <Header title={title} />
-      <main className="max-w-5xl mx-auto">{children}</main>
+      <main className="max-w-5xl lg:max-w-7xl mx-auto">{children}</main>
       <Footer />
     </div>
   );
