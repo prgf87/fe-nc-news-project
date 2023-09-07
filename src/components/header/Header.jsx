@@ -15,22 +15,25 @@ export default function Header() {
             className="h-20"
           />
         </Link>
-        {/* <h1>Header</h1> */}
         <section>
-          <aside className="flex items-center">
-            <img
-              src={users[0].avatar_url}
-              alt="Avatar for the currently signed-in user account"
-              className="h-10 rounded-full"
-            />
-            <p className="mr-8 ml-2">{users[0].username}</p>
-          </aside>
-          <Link
-            to={"/users"}
-            className="link text-xs pl-20 relative top-[-14px]"
-          >
-            Change user
+          <Link to={`/users/${users[0].username}`}>
+            <aside className="flex items-center">
+              <img
+                src={users[0].avatar_url}
+                alt="Avatar for the currently signed-in user account"
+                className="h-10 rounded-full"
+              />
+              <p className="mr-8 ml-2">{users[0].username}</p>
+            </aside>
           </Link>
+          <div className="absolute">
+            <Link
+              to={"/users"}
+              className="link text-xs pl-14 relative top-[-14px]"
+            >
+              Change user
+            </Link>
+          </div>
         </section>
       </main>
       <Navbar />

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
 import {
   getArticleById,
   getArticleComments,
@@ -10,6 +9,7 @@ import ErrorPage from "../modules/ErrorPage";
 import CommentCard from "./CommentCard";
 import IncreaseVoteCount from "../buttons/IncreaseVoteCount";
 import DecreaseVoteCount from "../buttons/DecreaseVoteCount";
+import CommentAdder from "../forms/CommentAdder";
 
 export default function ArticlePage() {
   const { article_id } = useParams();
@@ -50,7 +50,7 @@ export default function ArticlePage() {
         setLoading(false);
         setError(err);
       });
-  }, [article_id, votes]);
+  }, [article_id, votes, articleCommentList, comment_count]);
 
   if (error) {
     return <ErrorPage error={error} />;
@@ -61,15 +61,15 @@ export default function ArticlePage() {
   }
 
   return (
-    <article className="border-8 m-[2em] p-[2em]">
+    <article className="border-4 rounded-xl m-[1em] p-[1em]">
       <div className="text-left">
         <h1>{title}</h1>
         <h2>Written by: {author}</h2>
         <p>Published: {created_at}</p>
         <h3>Topic: {topic}</h3>
         <img src={article_img_url} alt={title} className="w-full" />
-        <p className="mx-28 my-8">{body}</p>
-        <p>{comment_count}</p>
+        <p className="md:mx-28 my-8">{body}</p>
+
         <div className="flex justify-center items-center">
           <p className="border-2 rounded-full px-4 py-2 bg-green-500/50">
             {currVotes}
@@ -89,8 +89,14 @@ export default function ArticlePage() {
         </span>
       </div>
       <div className="my-8 p-8 border-4 shadow-lg">
-        <h1 className="text-center my-8 underline ">Comments</h1>
-        <section className="grid grid-cols-2">
+        <h1 className="text-center mb-8 underline ">Comments</h1>
+        <CommentAdder
+          article_id={article_id}
+          articleCommentList={articleCommentList}
+          setArticleCommentList={setArticleCommentList}
+        />
+        <p className="p-2">Comments: {comment_count}</p>
+        <section className="comment--container">
           {articleCommentList.map((comment) => {
             if (articleCommentList.length === 0) {
               return (

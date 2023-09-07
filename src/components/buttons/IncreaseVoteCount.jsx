@@ -1,5 +1,6 @@
 import React from "react";
 import { addArticleVotes } from "../../utils/api";
+import ErrorPage from "../modules/ErrorPage";
 
 export default function IncreaseVoteCount({
   currVotes,
@@ -9,7 +10,11 @@ export default function IncreaseVoteCount({
   const clickAddHandler = (e, votes, id) => {
     e.preventDefault();
     setCurrVotes(votes + 1);
-    addArticleVotes(votes, id);
+    addArticleVotes(votes, id).catch((error) => {
+      if (error) {
+        return <ErrorPage error={error} />;
+      }
+    });
   };
   return (
     <button
