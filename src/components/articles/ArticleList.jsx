@@ -5,11 +5,13 @@ import LoadingSpinner from "../modules/LoadingSpinner";
 import ErrorPage from "../modules/ErrorPage";
 import { useSearchParams } from "react-router-dom";
 import TopicList from "../topics/TopicList";
+import SortBy from "../topics/SortBy";
 
 export default function ArticleList() {
   const [articleList, setArticleList] = useState([]);
   const [commentList, setCommentList] = useState([]);
-  const [topicList, setTopicList] = useState([]);
+  const [sortBy, setSortBy] = useState("created_at");
+  const [orderBy, setOrderBy] = useState("desc");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -18,7 +20,7 @@ export default function ArticleList() {
   useEffect(() => {
     setError(false);
     setLoading(true);
-    getArticles(topic)
+    getArticles(topic, sortBy, orderBy)
       .then(({ articles }) => {
         setLoading(false);
         setArticleList(articles);
@@ -28,7 +30,7 @@ export default function ArticleList() {
         setLoading(false);
         setError(true);
       });
-  }, [topic]);
+  }, [topic, sortBy, orderBy]);
 
   if (loading) {
     return <LoadingSpinner />;
@@ -40,7 +42,15 @@ export default function ArticleList() {
 
   return (
     <>
-      <TopicList />
+      <div className="border-b-2 shadow-lg">
+        <TopicList />
+        <SortBy
+          sortBy={sortBy}
+          orderBy={orderBy}
+          setSortBy={setSortBy}
+          setOrderBy={setOrderBy}
+        />
+      </div>
       <ul className="article--container">
         {articleList.map((article) => {
           if (loading) {
