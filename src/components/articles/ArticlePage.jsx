@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  getArticleById,
-  getArticleComments,
-  addArticleVotes,
-} from "../../utils/api";
+import { getArticleById, getArticleComments } from "../../utils/api";
 import ErrorPage from "../modules/ErrorPage";
 import CommentCard from "./CommentCard";
 import IncreaseVoteCount from "../buttons/IncreaseVoteCount";
@@ -92,7 +88,6 @@ export default function ArticlePage() {
         <h1 className="text-center mb-8 underline ">Comments</h1>
         <CommentAdder
           article_id={article_id}
-          articleCommentList={articleCommentList}
           setArticleCommentList={setArticleCommentList}
         />
         <p className="p-2">Comments: {comment_count}</p>

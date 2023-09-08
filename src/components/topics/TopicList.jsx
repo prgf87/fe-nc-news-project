@@ -26,7 +26,7 @@ export default function TopicList() {
   if (error) return <ErrorPage error={error} />;
 
   return (
-    <div className="border-b-2 shadow-lg">
+    <div>
       <h4 className="text-center my-4">Topics</h4>
       <ul className="flex justify-center text-lg gap-x-8 uppercase">
         {topicList.map((topic) => {

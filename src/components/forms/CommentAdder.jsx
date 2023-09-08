@@ -15,8 +15,13 @@ export default function CommentAdder({
 
   const submitHandler = (e) => {
     e.preventDefault();
-    addNewComment(newComment, article_id);
-    setArticleCommentList([comment, ...articleCommentList]);
+    addNewComment(newComment, article_id).then(({ data }) => {
+      const { comment } = data;
+      // console.log(comment);
+      setArticleCommentList((currComments) => {
+        [comment, ...currComments];
+      });
+    });
     setComment("");
   };
 
