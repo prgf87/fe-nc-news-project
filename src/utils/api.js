@@ -8,7 +8,6 @@ const db = axios.create({
 });
 
 export const getArticles = async (topic, sort_by, order_by) => {
-  console.log(topic, sort_by, order_by);
   const res = await db
     .get(
       `${baseURL}/articles` +

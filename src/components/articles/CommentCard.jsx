@@ -34,8 +34,12 @@ export default function CommentCard({ comment, setArticleCommentList }) {
       <h4>{comment.topic}</h4>
       <p>{comment.created_at}</p>
       <p>{comment.body}</p>
-      <p>{comment.votes}</p>
-      <p></p>
+      <div className="flex justify-center items-center">
+        <p className="text-xs border-2 rounded-full px-3 py-2 m-auto bg-green-500/50">
+          {comment.votes}
+        </p>
+      </div>
+
       <img
         src={comment.article_img_url}
         alt={comment.title}

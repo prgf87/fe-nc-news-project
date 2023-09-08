@@ -17,7 +17,6 @@ export default function CommentAdder({
     e.preventDefault();
     addNewComment(newComment, article_id).then(({ data }) => {
       const { comment } = data;
-      // console.log(comment);
       setArticleCommentList((currComments) => {
         [comment, ...currComments];
       });

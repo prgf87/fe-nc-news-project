@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getTopics } from "../../utils/api";
 import { Link } from "react-router-dom";
-import LoadingSpinner from "../modules/LoadingSpinner";
-import ErrorPage from "../modules/ErrorPage";
+import LoadingSpinner from "./LoadingSpinner";
+import ErrorPage from "./ErrorPage";
 
 export default function TopicList() {
   const [topicList, setTopicList] = useState([]);

@@ -4,17 +4,15 @@ import SingleArticle from "./SingleArticle";
 import LoadingSpinner from "../modules/LoadingSpinner";
 import ErrorPage from "../modules/ErrorPage";
 import { useSearchParams } from "react-router-dom";
-import TopicList from "../topics/TopicList";
-import SortBy from "../topics/SortBy";
+import TopicList from "../modules/TopicList";
+import SortBy from "../modules/SortBy";
 
 export default function ArticleList() {
   const [articleList, setArticleList] = useState([]);
   const [commentList, setCommentList] = useState([]);
-  const [sortBy, setSortBy] = useState("created_at");
-  const [orderBy, setOrderBy] = useState("desc");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const topic = searchParams.get("topic") || null;
   const sort_by = searchParams.get("sort_by") || null;
   const order_by = searchParams.get("order_by") || null;
@@ -22,7 +20,7 @@ export default function ArticleList() {
   useEffect(() => {
     setError(false);
     setLoading(true);
-    getArticles(topic, sortBy, orderBy)
+    getArticles(topic, sort_by, order_by)
       .then(({ articles }) => {
         setLoading(false);
         setArticleList(articles);
@@ -32,7 +30,7 @@ export default function ArticleList() {
         setLoading(false);
         setError(true);
       });
-  }, [topic, sortBy, orderBy]);
+  }, [topic, sort_by, order_by]);
 
   if (loading) {
     return <LoadingSpinner />;
@@ -46,7 +44,7 @@ export default function ArticleList() {
     <>
       <div className="border-b-2 shadow-lg">
         <TopicList />
-        <SortBy setSortBy={setSortBy} setOrderBy={setOrderBy} />
+        <SortBy searchParams={searchParams} setSearchParams={setSearchParams} />
       </div>
       <ul className="article--container">
         {articleList.map((article) => {
