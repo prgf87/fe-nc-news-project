@@ -44,7 +44,7 @@ export default function ArticleList() {
     <>
       <div className="border-b-2 shadow-lg">
         <TopicList />
-        <SortBy searchParams={searchParams} setSearchParams={setSearchParams} />
+        <SortBy setSearchParams={setSearchParams} />
       </div>
       <ul className="article--container">
         {articleList.map((article) => {

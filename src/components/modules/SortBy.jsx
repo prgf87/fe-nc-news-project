@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SortBy({ searchParams, setSearchParams }) {
+export default function SortBy({  setSearchParams }) {
   const changeHandlerSortBy = (e) => {
     e.preventDefault();
     setSearchParams((currSearch) => {
@@ -14,13 +14,17 @@ export default function SortBy({ searchParams, setSearchParams }) {
   const changeHandlerOrderBy = (e) => {
     e.preventDefault();
     setSearchParams((currSearch) => {
-      console.log(searchParams);
       if (currSearch === 0) {
         return `?order_by=${e.target.value}`;
       } else {
         return `${currSearch}&order_by=${e.target.value}`;
       }
     });
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    setSearchParams();
   };
 
   return (
@@ -53,6 +57,10 @@ export default function SortBy({ searchParams, setSearchParams }) {
           <option value="asc">Ascending</option>
         </select>
       </form>
+
+      <button className="btn ml-8" onClick={handleClick}>
+        Reset Search
+      </button>
     </div>
   );
 }
