@@ -80,3 +80,10 @@ export const getTopics = async () => {
   const results = res.data;
   return results;
 };
+
+export const deleteComment = async (id) => {
+  const res = await db.delete(`${baseURL}/comments/${id}`).catch((err) => {
+    console.log(err);
+  });
+  return res;
+};

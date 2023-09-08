@@ -1,15 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { removeArticleVotes } from "../../utils/api";
 
-export default function DecreaseVoteCount({
-  currVotes,
-  article_id,
-  setCurrVotes,
-}) {
+export default function DecreaseVoteCount({ currVotes, article_id }) {
+  const [disable, setDisable] = useState(false);
+
   const clickAddHandler = (e, votes, id) => {
     e.preventDefault();
     if (votes !== 0) {
-      setCurrVotes(votes - 1);
       removeArticleVotes(votes, id);
     } else {
       setCurrVotes(0);
@@ -17,10 +14,12 @@ export default function DecreaseVoteCount({
   };
   return (
     <button
-      className="button--dislike"
+      className={disable ? "disable--dislike" : "button--dislike"}
       onClick={(e) => {
         clickAddHandler(e, currVotes, article_id);
+        setDisable(true);
       }}
+      disabled={disable}
     >
       Dislike
     </button>

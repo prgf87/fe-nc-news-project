@@ -101,7 +101,13 @@ export default function ArticlePage() {
                 </p>
               );
             }
-            return <CommentCard key={comment.comment_id} comment={comment} />;
+            return (
+              <CommentCard
+                key={comment.comment_id}
+                comment={comment}
+                setArticleCommentList={setArticleCommentList}
+              />
+            );
           })}
         </section>
       </div>
