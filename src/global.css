@@ -9,24 +9,28 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.topic {
+  @apply text-xs bg-lime-300 px-4 py-1 rounded-full border-2 border-black uppercase;
+}
+
 button {
   @apply text-lg;
 }
 
-.btn {
+.button {
   @apply text-sm px-8 py-1 bg-zinc-300 border-2 border-black/50 text-zinc-700 hover:bg-zinc-200 hover:text-zinc-800 active:bg-zinc-400 active:text-zinc-900 active:border-zinc-500 duration-75;
 }
 
-.btn2 {
+.button--disable {
+  @apply text-sm px-8 py-1 bg-zinc-200 border-2 border-black/50 text-zinc-700 opacity-50;
+}
+
+.button2 {
   @apply text-sm px-8 py-1 text-zinc-600 hover:text-zinc-800  active:text-zinc-900  duration-75;
 }
 
-.topic {
-  @apply bg-lime-300 px-4 py-1 rounded-full border-2 border-black uppercase;
-}
-
-.btn--delete {
-  @apply text-sm w-60 text-center px-8 py-1 bg-red-300 border-2 border-black/80 text-red-700 hover:bg-red-200 hover:text-red-800;
+.button--delete {
+  @apply text-sm w-full mt-4 text-center px-8 py-1 bg-red-300 border-2 border-black/80 text-red-700 hover:bg-red-200 hover:text-red-800;
 }
 
 .disable--delete {
@@ -54,11 +58,11 @@ button {
 }
 
 .article--container {
-  @apply grid grid-cols-1 lg:grid-cols-2 mx-auto  p-8 m-8;
+  @apply grid grid-cols-1 lg:grid-cols-2 mx-auto  lg:p-8 lg:m-8;
 }
 
 .article--single {
-  @apply p-8 m-8 shadow-2xl max-h-[50rem] overflow-y-auto;
+  @apply p-8 m-8 shadow-2xl overflow-y-auto;
 }
 
 .comment--container {
@@ -91,4 +95,8 @@ h5 {
 
 p {
   @apply text-base;
+}
+
+select {
+  @apply px-2 py-1 border-2;
 }

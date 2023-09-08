@@ -47,7 +47,7 @@ export default function CommentCard({ comment, setArticleCommentList }) {
       />
       {user.username === comment.author && (
         <button
-          className={disable === false ? "btn--delete" : "disable--delete"}
+          className={disable === false ? "button--delete" : "disable--delete"}
           onClick={clickHandler}
           value={comment.comment_id}
           disabled={disable}

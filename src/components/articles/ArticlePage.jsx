@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getArticleById, getArticleComments } from "../../utils/api";
 import ErrorPage from "../modules/ErrorPage";
-import CommentCard from "./CommentCard";
+import CommentCard from "../comments/CommentCard";
 import IncreaseVoteCount from "../buttons/IncreaseVoteCount";
 import DecreaseVoteCount from "../buttons/DecreaseVoteCount";
-import CommentAdder from "../forms/CommentAdder";
+import CommentAdder from "../comments/CommentAdder";
+import LoadingSpinner from "../modules/LoadingSpinner";
 
 export default function ArticlePage() {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
+  const [articleCommentList, setArticleCommentList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [articleCommentList, setArticleCommentList] = useState([]);
   const {
     title,
     author,
@@ -24,6 +25,12 @@ export default function ArticlePage() {
     votes,
   } = article;
   const [currVotes, setCurrVotes] = useState(votes);
+
+  const articleDate = new Date(created_at).toLocaleDateString("en", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 
   useEffect(() => {
     setError(false);
@@ -46,23 +53,34 @@ export default function ArticlePage() {
         setLoading(false);
         setError(err);
       });
-  }, [article_id, votes, articleCommentList, comment_count]);
+  }, [article_id, votes, comment_count]);
 
-  if (error) {
+  if (error.code) {
     return <ErrorPage error={error} />;
   }
 
-  if (loading) {
-    return <p>Loading...</p>;
+  if (error) {
+    return (
+      <p>
+        That does not work, please try again or <Link to={"/"}>go home</Link>
+      </p>
+    );
   }
 
+  if (loading) {
+    return <LoadingSpinner />;
+  }
   return (
     <article className="border-4 rounded-xl m-[1em] p-[1em]">
       <div className="text-left">
         <h1>{title}</h1>
         <h2>Written by: {author}</h2>
-        <p>Published: {created_at}</p>
-        <h3>Topic: {topic}</h3>
+        <p>Published: {articleDate}</p>
+        <div className="my-2">
+          <Link to={`/?topic=${topic}`} className="topic">
+            {topic}
+          </Link>
+        </div>
         <img src={article_img_url} alt={title} className="w-full" />
         <p className="md:mx-28 my-8">{body}</p>
 
@@ -89,6 +107,7 @@ export default function ArticlePage() {
         <CommentAdder
           article_id={article_id}
           setArticleCommentList={setArticleCommentList}
+          articleCommentList={articleCommentList}
         />
         <p className="p-2">Comments: {comment_count}</p>
         <section className="comment--container">

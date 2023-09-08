@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { removeArticleVotes } from "../../utils/api";
 
-export default function DecreaseVoteCount({ currVotes, article_id }) {
+export default function DecreaseVoteCount({
+  currVotes,
+  article_id,
+  setCurrVotes,
+}) {
   const [disable, setDisable] = useState(false);
 
   const clickAddHandler = (e, votes, id) => {
@@ -11,6 +15,7 @@ export default function DecreaseVoteCount({ currVotes, article_id }) {
     } else {
       setCurrVotes(0);
     }
+    setCurrVotes(votes - 1);
   };
   return (
     <button
