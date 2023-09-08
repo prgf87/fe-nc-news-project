@@ -68,8 +68,7 @@ export const addNewComment = async (comment, id) => {
     .catch((err) => {
       console.log(err);
     });
-  console.log(res);
-  return res;
+  return res.data;
 };
 
 export const getTopics = async () => {

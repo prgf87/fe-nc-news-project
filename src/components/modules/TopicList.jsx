@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getTopics } from "../../utils/api";
 import { Link } from "react-router-dom";
-import LoadingSpinner from "./LoadingSpinner";
 import ErrorPage from "./ErrorPage";
 
 export default function TopicList() {
@@ -22,7 +21,6 @@ export default function TopicList() {
       });
   }, []);
 
-  if (loading) return <LoadingSpinner />;
   if (error) return <ErrorPage error={error} />;
 
   return (

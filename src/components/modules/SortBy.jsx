@@ -1,25 +1,18 @@
 import React from "react";
 
-export default function SortBy({  setSearchParams }) {
+export default function SortBy({ searchParams, setSearchParams }) {
   const changeHandlerSortBy = (e) => {
     e.preventDefault();
-    setSearchParams((currSearch) => {
-      if (currSearch === 0) {
-        return `?sort_by=${e.target.value}`;
-      } else {
-        return `${currSearch}&sort_by=${e.target.value}`;
-      }
-    });
+    const newSort = e.target.value;
+    searchParams.set("sort_by", newSort);
+    setSearchParams(searchParams);
   };
+
   const changeHandlerOrderBy = (e) => {
     e.preventDefault();
-    setSearchParams((currSearch) => {
-      if (currSearch === 0) {
-        return `?order_by=${e.target.value}`;
-      } else {
-        return `${currSearch}&order_by=${e.target.value}`;
-      }
-    });
+    const newOrder = e.target.value;
+    searchParams.set("order_by", newOrder);
+    setSearchParams(searchParams);
   };
 
   const handleClick = (e) => {
@@ -28,8 +21,8 @@ export default function SortBy({  setSearchParams }) {
   };
 
   return (
-    <div className="flex justify-center my-4">
-      <form className="flex gap-x-8">
+    <div className="grid lg:flex justify-center my-4">
+      <form className="flex gap-x-4 items-center">
         <p>Sort By</p>
         <select
           name="sort_by"
@@ -58,7 +51,10 @@ export default function SortBy({  setSearchParams }) {
         </select>
       </form>
 
-      <button className="btn ml-8" onClick={handleClick}>
+      <button
+        className="button w-40 mx-auto mt-4 lg:ml-8"
+        onClick={handleClick}
+      >
         Reset Search
       </button>
     </div>

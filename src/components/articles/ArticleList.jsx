@@ -37,14 +37,14 @@ export default function ArticleList() {
   }
 
   if (error) {
-    return <ErrorPage />;
+    return <ErrorPage error={error} />;
   }
 
   return (
     <>
       <div className="border-b-2 shadow-lg">
         <TopicList />
-        <SortBy setSearchParams={setSearchParams} />
+        <SortBy searchParams={searchParams} setSearchParams={setSearchParams} />
       </div>
       <ul className="article--container">
         {articleList.map((article) => {

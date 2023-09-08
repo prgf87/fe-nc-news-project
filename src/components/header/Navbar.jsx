@@ -6,17 +6,17 @@ export default function Navbar() {
     <nav>
       <ul className="flex justify-center gap-x-4">
         <li>
-          <button className="btn2">
+          <button className="button2">
             <Link to={"/"}>Home</Link>
           </button>
         </li>
         <li>
-          <button className="btn2">
+          <button className="button2">
             <Link to={"/users"}>Users</Link>
           </button>
         </li>
         <li>
-          <button className="btn2">
+          <button className="button2">
             <Link to={"/profile"}>My Profile</Link>
           </button>
         </li>
