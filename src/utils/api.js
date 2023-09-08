@@ -7,10 +7,15 @@ const db = axios.create({
   baseURL: baseURL,
 });
 
-export const getArticles = async (topic, sortBy, orderBy) => {
-  console.log(sortBy, orderBy);
+export const getArticles = async (topic, sort_by, order_by) => {
+  console.log(topic, sort_by, order_by);
   const res = await db
-    .get(`${baseURL}/articles` + (topic ? `?topic=${topic}` : ""))
+    .get(
+      `${baseURL}/articles` +
+        (topic ? `?topic=${topic}` : "") +
+        (sort_by && topic ? `&sort_by=${sort_by}` : "") +
+        (order_by && topic ? `&order_by=${order_by}` : "")
+    )
     .catch((err) => {
       console.log(err);
     });

@@ -14,8 +14,10 @@ export default function ArticleList() {
   const [orderBy, setOrderBy] = useState("desc");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const topic = searchParams.get("topic") || null;
+  const sort_by = searchParams.get("sort_by") || null;
+  const order_by = searchParams.get("order_by") || null;
 
   useEffect(() => {
     setError(false);
@@ -44,12 +46,7 @@ export default function ArticleList() {
     <>
       <div className="border-b-2 shadow-lg">
         <TopicList />
-        <SortBy
-          sortBy={sortBy}
-          orderBy={orderBy}
-          setSortBy={setSortBy}
-          setOrderBy={setOrderBy}
-        />
+        <SortBy setSortBy={setSortBy} setOrderBy={setOrderBy} />
       </div>
       <ul className="article--container">
         {articleList.map((article) => {
