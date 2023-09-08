@@ -71,8 +71,8 @@ export default function ArticlePage() {
     return <LoadingSpinner />;
   }
   return (
-    <article className="border-4 rounded-xl m-[1em] p-[1em]">
-      <div className="text-left">
+    <article className="border-4 rounded-xl m-[1em] p-[1em] lg:w-1/2 lg:mx-auto">
+      <div className="text-left ">
         <h1>{title}</h1>
         <h2>Written by: {author}</h2>
         <p>Published: {articleDate}</p>

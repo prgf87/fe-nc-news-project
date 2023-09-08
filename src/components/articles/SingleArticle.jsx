@@ -32,7 +32,7 @@ export default function SingleArticle({ article }) {
 
       <Link
         to={`/articles/${article_id}`}
-        className="opacity-50 hover:opacity-100"
+        className="opacity-100 hover:animation-spin"
       >
         <img
           src={article_img_url}

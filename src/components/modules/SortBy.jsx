@@ -22,7 +22,7 @@ export default function SortBy({ searchParams, setSearchParams }) {
 
   return (
     <div className="grid lg:flex justify-center my-4">
-      <form className="flex gap-x-4 items-center">
+      <form className="flex gap-x-4 justify-center items-center">
         <p>Sort By</p>
         <select
           name="sort_by"

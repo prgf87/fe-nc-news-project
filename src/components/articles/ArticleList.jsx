@@ -44,7 +44,12 @@ export default function ArticleList() {
     <>
       <div className="border-b-2 shadow-lg">
         <TopicList />
-        <SortBy searchParams={searchParams} setSearchParams={setSearchParams} />
+        <div className="flex justify-center items-center">
+          <SortBy
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+          />
+        </div>
       </div>
       <ul className="article--container">
         {articleList.map((article) => {
