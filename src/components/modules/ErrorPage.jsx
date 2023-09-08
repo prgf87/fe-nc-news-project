@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function ErrorPage({ props }) {
   const { error } = props;
+  console.log(props);
 
   const errorMessage400 = (
     <div className="text-center text-2xl my-80 mx-8">
