@@ -1,10 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function ErrorPage({ props }) {
-  const { error } = props;
-  console.log(props);
-
+export default function ErrorPage(error) {
   const errorMessage400 = (
     <div className="text-center text-2xl my-80 mx-8">
       <p>
