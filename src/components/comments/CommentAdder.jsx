@@ -4,11 +4,7 @@ import { addNewComment } from "../../utils/api";
 import { Link } from "react-router-dom";
 import ErrorPage from "../modules/ErrorPage";
 
-export default function CommentAdder({
-  article_id,
-  setArticleCommentList,
-  articleCommentList,
-}) {
+export default function CommentAdder({ article_id, setArticleCommentList }) {
   const { user } = useContext(UserContext);
   const [comment, setComment] = useState("");
   const [disable, setDisable] = useState(false);
