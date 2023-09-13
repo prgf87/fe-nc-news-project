@@ -107,7 +107,6 @@ export default function ArticlePage() {
         <CommentAdder
           article_id={article_id}
           setArticleCommentList={setArticleCommentList}
-          articleCommentList={articleCommentList}
         />
         <p className="p-2">Comments: {comment_count}</p>
         <section className="comment--container">

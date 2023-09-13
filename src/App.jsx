@@ -15,6 +15,7 @@ function App() {
           <Route path="/articles/:article_id" element={<ArticlePage />} />
           <Route path="/users" element={<UserList />} />
           <Route path="/users/:username" element={<ProfilePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route
             path="*"
             element={<ErrorPage props={{ error: { code: 404 } }} />}
