@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const baseURL = "http://localhost:9090/api";
-const baseURL = "http://104.248.94.211:9090/api;
+const baseURL = "http://104.248.94.211:9090/api";
 
 const db = axios.create({
   baseURL: baseURL,
