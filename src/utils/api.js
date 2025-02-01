@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const baseURL = "http://localhost:9090/api";
-const baseURL = "http://nc-news-api.globalwebsystems.co.uk/api";
+const baseURL = "https://nc-news-api.globalwebsystems.co.uk/api";
 
 const db = axios.create({
   baseURL: baseURL,
