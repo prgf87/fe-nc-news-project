@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://nc-news.globalwebsystems.co.uk/",
+      "permanent": true
+    }
+  ]
+}
